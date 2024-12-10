@@ -1,0 +1,16 @@
+<h1>15 Puzzle</h1>
+
+<div id="puzzle-grid" style="display: grid; grid-template-columns: repeat(4, 100px); gap: 5px;">
+  <%= for {number, index} <- Enum.with_index(@puzzle) do %>
+    <div
+      phx-click="move_tile"
+      phx-value-tile="<%= number %>"
+      class="puzzle-tile"
+      style="width: 100px; height: 100px;
+        background-color: <%=
+          if number == Enum.at(@initial_puzzle, index), do: '#98fb98', else: '#ADD8E6' %>;
+        text-align: center; line-height: 100px; color: white; font-size: 24px;">
+      <%= if number, do: number, else: "" %>
+    </div>
+  <% end %>
+</div>
